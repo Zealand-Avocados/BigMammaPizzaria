@@ -1,13 +1,14 @@
+    
 namespace BigMammaPizzaria
 {
     public class MenuItem
     {
         
         private string _name;
-        protected double _price;
+        protected float _price;
 
 
-        protected MenuItem(string name, double price)
+        protected MenuItem(string name, float price)
         {
             _name = name;
             _price = price;
@@ -15,7 +16,7 @@ namespace BigMammaPizzaria
         
 
         public string Name => _name;
-        public double Price => _price;
+        public float Price => _price;
 
 
 

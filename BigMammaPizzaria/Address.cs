@@ -17,7 +17,12 @@ namespace BigMammaPizzaria
 
         public string Country
         {
-            get { return _country; }
+            get
+            {
+                //
+                return _country;
+            }
+            set => _country = value;
         }
         
         public string City

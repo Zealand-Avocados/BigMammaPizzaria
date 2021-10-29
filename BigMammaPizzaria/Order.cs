@@ -5,25 +5,22 @@ namespace BigMammaPizzaria
 {
     public class Order
     {
-        private DateTime _orderDateTime;
+        private DateTime _orderDateTime = DateTime.Now;
         private Customer _customer;
-        private List<MenuItem> _orderItems;
+        private List<OrderItem> _orderItems;
 
-
-        public Order(Customer customer, List<MenuItem> orderItems)
+        public Order(Customer customer, List<OrderItem> orderItems)
         {
-            _orderDateTime = DateTime.Now;
             _customer = customer;
             _orderItems = orderItems;
         }
-
 
         public DateTime OrderDateTime
         {
             get { return _orderDateTime; }
         }
 
-        public List<MenuItem> OrderItems
+        public List<OrderItem> OrderItems
         {
             get { return _orderItems; }
         }
@@ -32,9 +29,9 @@ namespace BigMammaPizzaria
         public double CalculateTotalPrice()
         {
             double orderPrice = 0;
-            foreach (MenuItem item in _orderItems)
+            foreach (var item in _orderItems)
             {
-                orderPrice += item.Price;
+                orderPrice += item.TotalItemPrice;
             }
 
             return orderPrice * (Constants.Tax + 1) + Constants.DeliveryCost;
@@ -43,8 +40,10 @@ namespace BigMammaPizzaria
 
         public override string ToString()
         {
-            return
-                $"The order was made by {_customer.FirstName} {_customer.LastName}. The order contains: \n{string.Join("\n", _orderItems)} \n";
+            return 
+                $"The order was made by {_customer.FirstName} {_customer.LastName}." +
+                $"\n\tThe order contains: \n\t\t{string.Join("\n\t\t", _orderItems)}" +
+                $"\n\t\tThe total price is {CalculateTotalPrice()} dkk\n";
         }
     }
 }

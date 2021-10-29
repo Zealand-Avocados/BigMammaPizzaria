@@ -3,9 +3,9 @@ namespace BigMammaPizzaria
     public static class Constants
     {
 
-        public const double ExtraToppingPrice = 20;
-        public const double Tax = 0.25;
-        public const double DeliveryCost = 40;
+        public const float ExtraToppingPrice = 20;
+        public const float Tax = 0.25f;
+        public const float DeliveryCost = 40;
         
         
 

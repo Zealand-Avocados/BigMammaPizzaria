@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 
 namespace BigMammaPizzaria
@@ -17,20 +17,19 @@ namespace BigMammaPizzaria
         Majonase,
     }
 
-
     public class Pizza : MenuItem
     {
         private List<Ingredient> _ingredients;
         private List<Topping> _toppings;
         private int _extraToppings = 0;
 
-        public Pizza(string name, double price, List<Ingredient> ingredients) : base(name, price)
+        public Pizza(string name, float price, List<Ingredient> ingredients) : base(name, price)
         {
             _ingredients = ingredients;
             _toppings = new List<Topping>();
         }
 
-        public Pizza(string name, double price, List<Ingredient> ingredients, List<Topping> toppings) : base(name,
+        public Pizza(string name, float price, List<Ingredient> ingredients, List<Topping> toppings) : base(name,
             price)
         {
             _ingredients = ingredients;
@@ -40,6 +39,9 @@ namespace BigMammaPizzaria
 
         public void AddTopping(Topping topping)
         {
+            if (_toppings.Contains(topping))
+                return;
+
             _toppings.Add(topping);
             _price += Constants.ExtraToppingPrice;
             _extraToppings++;
@@ -53,12 +55,14 @@ namespace BigMammaPizzaria
             _extraToppings = 0;
         }
 
+        public Pizza Clone() => (Pizza)MemberwiseClone();
+        
 
         public override string ToString()
         {
             return
-                $"The pizza {Name}, it costs {Price} DKK, the ingredients are {string.Join(", ", _ingredients)} " +
-                (_toppings.Count == 0 ? "" : "and the toppings are "  + string.Join(" ,", _toppings));
+                $"{string.Join(", ", _ingredients)}" +
+                (_toppings.Count == 0 ? "" : "; toppings: " + string.Join(", ", _toppings));
         }
     }
 }
