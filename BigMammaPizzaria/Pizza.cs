@@ -7,13 +7,14 @@ namespace BigMammaPizzaria
     {
         Tomato,
         Cheese,
-        Garlic, // TODO  
+        Garlic,
+        Pineapple,
     }
 
     public enum Topping
     {
         Ketchup,
-        Majonase, // TODO
+        Majonase,
     }
 
 
@@ -56,7 +57,7 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             return
-                $"The {Name} pizza is really good, it costs {Price} DKK, the ingredients are {string.Join(", ", _ingredients)} " +
+                $"The pizza {Name}, it costs {Price} DKK, the ingredients are {string.Join(", ", _ingredients)} " +
                 (_toppings.Count == 0 ? "" : "and the toppings are "  + string.Join(" ,", _toppings));
         }
     }

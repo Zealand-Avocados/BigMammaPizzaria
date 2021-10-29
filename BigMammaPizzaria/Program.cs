@@ -8,12 +8,9 @@ namespace BigMammaPizzaria
         static void Main(string[] args)
         {
             
-            Pizza p1 = new Pizza("Margarite", 78, new List<Ingredient>{Ingredient.Tomato, Ingredient.Cheese});
-            Pizza p2 = new Pizza("Proscutio", 78, new List<Ingredient>{Ingredient.Tomato, Ingredient.Cheese}, new List<Topping>{Topping.Ketchup});
+            Store store = new Store();
+            store.Start();
 
-            Console.WriteLine(p1);
-            Console.WriteLine(p2);
-            
         }
     }
 }
