@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BigMammaPizzaria
 {
@@ -6,7 +7,13 @@ namespace BigMammaPizzaria
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+            Pizza p1 = new Pizza("Margarite", 78, new List<Ingredient>{Ingredient.Tomato, Ingredient.Cheese});
+            Pizza p2 = new Pizza("Proscutio", 78, new List<Ingredient>{Ingredient.Tomato, Ingredient.Cheese}, new List<Topping>{Topping.Ketchup});
+
+            Console.WriteLine(p1);
+            Console.WriteLine(p2);
+            
         }
     }
 }
