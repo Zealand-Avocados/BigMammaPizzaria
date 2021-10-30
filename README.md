@@ -1,13 +1,25 @@
 # Big Mamma Pizzaria
 
-First project of this group. The project management is located on ClickUp.
+First project of this group. The project management is located on ClickUp. The majority of the code was implemented together on one screen during the school week.
 
-### Principles
-For someone it can be a little bit frustrating in the beginning to work with GitHub, but there are some principles that we should follow to be the most efficient and clean.
+### Team Members
+Martin Holoubek (mart0c94@edu.easj.dk)
 
-I'm mainly talking about keeping the main branch clean. So everyone is working on his own branch and we are making post request to the main branch, which has to be reviewed by at least one group member.
+Adam Cipkala (adam7602@edu.easj.dk)
 
-It's not really case for this project, because this is really small one. But it can be good practice for Mo to learn it. 
+Patrik Hoferica (patr057i@edu.easj.dk)
+
+Mohammed Al-Shalan (moha151h@edu.easj.dk)
+
+Pawel Dziagwa (pawe0918@edu.easj.dk)
+### School year:
+2021/22
+### Subject:
+Computer Science (rf21cs2o1-1o)
+
+### Teachers:
+Ivan Rosencinge Frederiksen, Mohammed El Allali
+
 
 ## Last and the most important
-Life is not just all about money, remember that.
+Life is not just all about the money, remember that.
