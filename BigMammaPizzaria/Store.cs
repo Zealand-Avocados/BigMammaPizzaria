@@ -39,18 +39,14 @@ namespace BigMammaPizzaria
 
             #region customer1
 
-            var customer1 = GetCustomer("Adam", "Cipkala");
-            if (customer1 == null)
-            {
-                Console.WriteLine("Customer does not exist");
-                return;
-            }
-
             var myPizza = GetPizza("Proscutio");
             if (myPizza == null)
             {
                 Console.WriteLine("Pizza does not exist");
-                return;
+            }
+            else
+            {
+                orderItems.Add(new OrderItem(2, myPizza));
             }
 
             myPizza.AddTopping(Topping.Majonase);
@@ -60,30 +56,35 @@ namespace BigMammaPizzaria
             if (myDrink == null)
             {
                 Console.WriteLine("Drink does not exist");
-                return;
+            }
+            else
+            {
+                orderItems.Add(new OrderItem(3, myDrink));
             }
 
-            orderItems.Add(new OrderItem(2, myPizza));
-            orderItems.Add(new OrderItem(3, myDrink));
-
-            _orders.Add(new Order(customer1, new List<OrderItem>(orderItems)));
+            var customer1 = GetCustomer("Adam", "Cipkala");
+            if (customer1 == null)
+            {
+                Console.WriteLine("Customer does not exist");
+            }
+            else
+            {
+                _orders.Add(new Order(customer1, new List<OrderItem>(orderItems)));
+            }
 
             orderItems.Clear();
             #endregion
 
             #region customer2
-            var customer2 = GetCustomer("Patrik", "Hoferica");
-            if (customer2 == null)
-            {
-                Console.WriteLine("Customer does not exist");
-                return;
-            }
 
             var myPizza2 = GetPizza("Hawai");
             if (myPizza2 == null)
             {
                 Console.WriteLine("Pizza does not exist");
-                return;
+            }
+            else
+            {
+                orderItems.Add(new OrderItem(1, myPizza2));
             }
 
             myPizza2.AddTopping(Topping.Majonase);
@@ -93,43 +94,56 @@ namespace BigMammaPizzaria
             if (myDrink2 == null)
             {
                 Console.WriteLine("Drink does not exist");
-                return;
+            }
+            else
+            {
+                orderItems.Add(new OrderItem(5, myDrink2));
             }
 
-            orderItems.Add(new OrderItem(1, myPizza2));
-            orderItems.Add(new OrderItem(5, myDrink2));
-
-            _orders.Add(new Order(customer2, new List<OrderItem>(orderItems)));
+            var customer2 = GetCustomer("Patrik", "Hoferica");
+            if (customer2 == null)
+            {
+                Console.WriteLine("Customer does not exist");
+            }
+            else
+            {
+                _orders.Add(new Order(customer2, new List<OrderItem>(orderItems)));
+            }
 
             orderItems.Clear();
             #endregion
 
             #region customer3
-            var customer3 = GetCustomer("Pawel", "Dziagwa");
-            if (customer3 == null)
-            {
-                Console.WriteLine("Customer does not exist");
-                return;
-            }
 
             var myPizza3 = GetPizza("Margarita");
             if (myPizza3 == null)
             {
                 Console.WriteLine("Pizza does not exist");
-                return;
+            }
+            else
+            {
+                orderItems.Add(new OrderItem(1, myPizza3));
             }
 
             var myDrink3 = GetDrink("Water");
             if (myDrink3 == null)
             {
                 Console.WriteLine("Drink does not exist");
-                return;
+            }
+            else
+            {
+                orderItems.Add(new OrderItem(5, myDrink3));
             }
 
-            orderItems.Add(new OrderItem(1, myPizza3));
-            orderItems.Add(new OrderItem(5, myDrink3));
-
-            _orders.Add(new Order(customer3, new List<OrderItem>(orderItems)));
+            var customer3 = GetCustomer("Pawel", "Dziagwa");
+            if (customer3 == null)
+            {
+                Console.WriteLine("Customer does not exist");
+            }
+            else
+            {
+                _orders.Add(new Order(customer3, new List<OrderItem>(orderItems)));
+            }
 
             orderItems.Clear();
             #endregion
