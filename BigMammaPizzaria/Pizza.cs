@@ -56,7 +56,6 @@ namespace BigMammaPizzaria
         }
 
         public Pizza Clone() => (Pizza)MemberwiseClone();
-        
 
         public override string ToString()
         {

@@ -8,13 +8,11 @@ namespace BigMammaPizzaria
         private DateTime _orderDateTime = DateTime.Now;
         private Customer _customer;
         private List<OrderItem> _orderItems;
-
         public Order(Customer customer, List<OrderItem> orderItems)
         {
             _customer = customer;
             _orderItems = orderItems;
         }
-
         public DateTime OrderDateTime
         {
             get { return _orderDateTime; }
@@ -36,7 +34,6 @@ namespace BigMammaPizzaria
 
             return orderPrice * (Constants.Tax + 1) + Constants.DeliveryCost;
         }
-
 
         public override string ToString()
         {

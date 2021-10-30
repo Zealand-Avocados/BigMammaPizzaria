@@ -2,9 +2,7 @@ namespace BigMammaPizzaria
 {
     public class Drink : MenuItem
     {
-
         private int _volumeInMl;
-
 
         public Drink(string name, float price, int volumeInMl) : base(name, price)
         {
@@ -19,8 +17,5 @@ namespace BigMammaPizzaria
         {
             return $"the volume is {_volumeInMl} ml";
         }
-        
-
-
     }
 }

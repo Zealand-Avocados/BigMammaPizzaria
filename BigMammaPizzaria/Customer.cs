@@ -5,8 +5,6 @@ namespace BigMammaPizzaria
         private string _firstName;
         private string _lastName;
         private Address _address;
-
-
         public Customer(string firstName, string lastName, Address address)
         {
             _firstName = firstName;

@@ -14,12 +14,9 @@ namespace BigMammaPizzaria
             _quantity = quantity;
             _menuItem = menuItem;
         }
-
         public float TotalItemPrice => _quantity * _menuItem.Price;
-
         public int Quantity => _quantity;
         public MenuItem MenuItem => _menuItem;
-
 
         public override string ToString()
         {

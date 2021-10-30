@@ -27,10 +27,12 @@ namespace BigMammaPizzaria
 
         public void Start()
         {
-           
-            Console.WriteLine(_menu);
+
+            foreach (var item in _menu)
+            {
+                Console.WriteLine("The " + item.Name + " costs " + item.Price + " dkk.");
+            }
             
-            Console.WriteLine();
             Console.WriteLine();
 
             List<OrderItem> orderItems = new List<OrderItem>();
@@ -135,7 +137,6 @@ namespace BigMammaPizzaria
             foreach (Order item in _orders)
             {
                 Console.WriteLine(item);
-                
             }
         }
 
@@ -149,8 +150,24 @@ namespace BigMammaPizzaria
             return _menu.FirstOrDefault(obj => obj.Name == sName);
         }
 
-        private Pizza GetPizza(string sName) => ((Pizza)GetMenuItem(sName)).Clone();
-        private Drink GetDrink(string sName) => ((Drink)GetMenuItem(sName)).Clone();
+        private Pizza GetPizza(string sName)
+        {
+            MenuItem m = GetMenuItem(sName);
+            if (m == null)
+                return null;
+
+            return ((Pizza)m).Clone();
+
+        }
+        private Drink GetDrink(string sName)
+        {
+            MenuItem m = GetMenuItem(sName);
+            if (m == null)
+                return null;
+
+            return ((Drink)m).Clone();
+        }
+        
 
     }
 }
