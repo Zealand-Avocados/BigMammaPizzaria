@@ -6,41 +6,52 @@ namespace BigMammaPizzaria
 {
     public class Store
     {
-        private List<Order> _orders = new List<Order>();
+        private OrderCatalog _orderCatalog = new OrderCatalog();
 
-        public List<Customer> _customers = new List<Customer>
+        private CustomerCatalog _customerCatalog = new CustomerCatalog(new List<Customer>
         {
             new Customer("Adam", "Cipkala", new Address("Slovakia", "Kosice", "Lunik 9", 23423)),
             new Customer("Patrik", "Hoferica", new Address("Slovakia", "Zilina", "Kosicka", 23413)),
             new Customer("Pawel", "Dziagwa", new Address("Poland", "Krakow", "Lownicka", 32432))
-        };
+        });
 
-        public List<MenuItem> _menu = new List<MenuItem>
+
+        private MenuCatalog _menuCatalog = new MenuCatalog(new List<MenuItem>
         {
-            new Pizza("Margarita", 78, new List<Ingredient>{Ingredient.Tomato, Ingredient.Cheese}),
-            new Pizza("Proscutio", 45, new List<Ingredient>{Ingredient.Tomato, Ingredient.Cheese}, new List<Topping>{Topping.Ketchup}),
-            new Pizza("Hawai", 66, new List<Ingredient>{Ingredient.Tomato, Ingredient.Pineapple}, new List<Topping>{Topping.Majonase}),
+            new Pizza("Margarita", 78, new List<Ingredient> {Ingredient.Tomato, Ingredient.Cheese}),
+            new Pizza("Proscutio", 45, new List<Ingredient> {Ingredient.Tomato, Ingredient.Cheese},
+                new List<Topping> {Topping.Ketchup}),
+            new Pizza("Hawai", 66, new List<Ingredient> {Ingredient.Tomato, Ingredient.Pineapple},
+                new List<Topping> {Topping.Majonase}),
             new Drink("Coke", 20, 300),
             new Drink("Coffee Latte", 40, 150),
             new Drink("Water", 10, 500)
-        };
+        });
 
-        private MenuCatalog _menuCatalog = new MenuCatalog();
 
         public void Start()
         {
+            _menuCatalog.PrintMenu();
 
-            foreach (var item in _menu)
-            {
-                Console.WriteLine("The " + item.Name + " costs " + item.Price + " dkk.");
-            }
-            
-            Console.WriteLine();
+            _menuCatalog.AddMenuItem(new Pizza("Pepperoni", 55,
+                new List<Ingredient> {Ingredient.Tomato, Ingredient.Salami}));
 
-            List<OrderItem> orderItems = new List<OrderItem>();
+            _menuCatalog.DeleteMenuItem("Hawai");
 
+            _menuCatalog.UpdateMenuItem("Coke", "Coca Cola", 22);
+
+            Console.WriteLine(_menuCatalog.Search("Margarita"));
+
+            _menuCatalog.PrintMenu();
+
+            /*
             #region customer1
 
+            List<OrderItem> firstOrderItems = new List<OrderItem>();
+
+
+            firstOrderItems.Add(new Order())
+            
             var myPizza = GetPizza("Hawai");
             if (myPizza == null)
             {
@@ -75,6 +86,7 @@ namespace BigMammaPizzaria
             }
 
             orderItems.Clear();
+
             #endregion
 
             #region customer2
@@ -113,6 +125,7 @@ namespace BigMammaPizzaria
             }
 
             orderItems.Clear();
+
             #endregion
 
             #region customer3
@@ -148,42 +161,49 @@ namespace BigMammaPizzaria
             }
 
             orderItems.Clear();
+
             #endregion
 
             foreach (Order item in _orders)
             {
                 Console.WriteLine(item);
             }
+            
+            */
         }
 
-        private Customer GetCustomer(string sFirstName, string sLastName)
+        // TODO UserChoice
+
+        private Customer GetCustomer(string firstName, string lastName)
         {
-            return _customers.FirstOrDefault(obj => obj.FirstName == sFirstName && obj.LastName == sLastName);
+            return _customerCatalog.Search(firstName, lastName);
         }
 
+
+        // TODO 
         private MenuItem GetMenuItem(string sName)
         {
-            return _menu.FirstOrDefault(obj => obj.Name == sName);
+            return _menuCatalog.Menu.FirstOrDefault(obj => obj.Name == sName);
         }
 
+        // TODO
         private Pizza GetPizza(string sName)
         {
             MenuItem m = GetMenuItem(sName);
             if (m == null)
                 return null;
 
-            return ((Pizza)m).Clone();
-
+            return ((Pizza) m).Clone();
         }
+
+        // TODO
         private Drink GetDrink(string sName)
         {
             MenuItem m = GetMenuItem(sName);
             if (m == null)
                 return null;
 
-            return ((Drink)m).Clone();
+            return ((Drink) m).Clone();
         }
-        
-
     }
 }

@@ -9,6 +9,7 @@ namespace BigMammaPizzaria
         Cheese,
         Garlic,
         Pineapple,
+        Salami
     }
 
     public enum Topping

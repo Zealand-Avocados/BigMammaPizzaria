@@ -12,18 +12,16 @@ namespace BigMammaPizzaria
             _address = address;
         }
 
-        public string FirstName
+        public string FirstName => _firstName;
+
+        public string LastName => _lastName;
+
+        public Address Address => _address;
+
+        public void Update(string firstName, string lastName)
         {
-            get { return _firstName; }
-        }
-        
-        public string LastName
-        {
-            get { return _lastName; }
-        }
-        
-        public Address Address {
-            get { return _address;}
+            _firstName = firstName;
+            _lastName = lastName;
         }
 
         public override string ToString()

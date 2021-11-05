@@ -15,15 +15,9 @@ namespace BigMammaPizzaria
             _orderItems = orderItems;
             _id = generateID();
         }
-        public DateTime OrderDateTime
-        {
-            get { return _orderDateTime; }
-        }
+        public DateTime OrderDateTime => _orderDateTime;
 
-        public List<OrderItem> OrderItems
-        {
-            get { return _orderItems; }
-        }
+        public List<OrderItem> OrderItems => _orderItems;
 
         public string Id => _id;
 
@@ -42,6 +36,12 @@ namespace BigMammaPizzaria
 
             return orderPrice * (Constants.Tax + 1) + Constants.DeliveryCost;
         }
+
+        public void Update(List<OrderItem> orderItems)
+        {
+            _orderItems = orderItems;
+        }
+
 
         public override string ToString()
         {

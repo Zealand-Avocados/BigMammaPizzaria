@@ -7,22 +7,35 @@ namespace BigMammaPizzaria
 {
     public class MenuCatalog
     {
-        private List<MenuItem> _menu = new List<MenuItem>();
-        
+        private List<MenuItem> _menu;
 
+
+
+        public MenuCatalog()
+        {
+            _menu = new List<MenuItem>();
+        }
+
+        public MenuCatalog(List<MenuItem> items)
+        {
+            _menu = items;
+        }
+
+        public List<MenuItem> Menu => _menu;
+        
         public void AddMenuItem(MenuItem menuItem)
         {
             _menu.Add(menuItem);
         }
 
-        public void DeleteMenuItem(MenuItem menuItem)
+        public void DeleteMenuItem(string menuItem)
         {
-            _menu.Remove(menuItem); // TODO
+            _menu.Remove(Search(menuItem)); // TODO
         }
 
         public void UpdateMenuItem(string name, string newName, float price)
         {
-            SearchItem(name).Update(newName, price); // TODO
+            Search(name).Update(newName, price); // TODO
         }
 
         public void PrintMenu()
@@ -32,7 +45,7 @@ namespace BigMammaPizzaria
             Console.WriteLine("------------------");
         }
 
-        public MenuItem SearchItem(string name)
+        public MenuItem Search(string name)
         {
             return _menu.Find(item => item.Name == name); // TODO checks for empty list or null exceptions
         }
