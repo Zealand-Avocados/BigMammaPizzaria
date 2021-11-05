@@ -3,7 +3,7 @@ namespace BigMammaPizzaria
 {
     public class MenuItem
     {
-        private string _name;
+        protected string _name;
         protected float _price;
 
         protected MenuItem(string name, float price)
@@ -14,6 +14,12 @@ namespace BigMammaPizzaria
         
         public string Name => _name;
         public float Price => _price;
+
+        public void Update(string name, float price)
+        {
+            _name = name;
+            _price = price;
+        }
 
         public override string ToString()
         {

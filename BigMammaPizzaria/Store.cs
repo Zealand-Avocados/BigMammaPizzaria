@@ -39,7 +39,7 @@ namespace BigMammaPizzaria
 
             #region customer1
 
-            var myPizza = GetPizza("Proscutio");
+            var myPizza = GetPizza("Coke");
             if (myPizza == null)
             {
                 Console.WriteLine("Pizza does not exist");
