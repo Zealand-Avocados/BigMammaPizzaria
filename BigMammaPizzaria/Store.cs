@@ -25,6 +25,8 @@ namespace BigMammaPizzaria
             new Drink("Water", 10, 500)
         };
 
+        private MenuCatalog _menuCatalog = new MenuCatalog();
+
         public void Start()
         {
 
@@ -39,7 +41,7 @@ namespace BigMammaPizzaria
 
             #region customer1
 
-            var myPizza = GetPizza("Coke");
+            var myPizza = GetPizza("Hawai");
             if (myPizza == null)
             {
                 Console.WriteLine("Pizza does not exist");
