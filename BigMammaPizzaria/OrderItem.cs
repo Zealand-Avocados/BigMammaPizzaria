@@ -11,6 +11,7 @@ namespace BigMammaPizzaria
 
         public OrderItem(int quantity, MenuItem menuItem)
         {
+            if (quantity <= 0 || menuItem == null) throw new ArgumentException("Wrong arguments values for order item"); 
             _quantity = quantity;
             _menuItem = menuItem;
         }

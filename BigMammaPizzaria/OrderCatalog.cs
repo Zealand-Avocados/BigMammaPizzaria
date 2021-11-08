@@ -15,7 +15,13 @@ namespace BigMammaPizzaria
         
         public OrderCatalog(List<Order> order)
         {
-            _orders = order;
+            if (order == null) _orders = new List<Order>();
+            else 
+            {
+                order.RemoveAll(order => order == null);
+                _orders = order;
+            }
+           
         }
 
 
@@ -24,6 +30,7 @@ namespace BigMammaPizzaria
 
         public void Add(Order order)
         {
+            if (order == null) return;
             _orders.Add(order); // TODO check for null
         }
 
@@ -35,16 +42,13 @@ namespace BigMammaPizzaria
 
         public void Update(string id, List<OrderItem> orderItem)
         {
-
-            Search(id).Update(orderItem); // TODO check for null as well here
+            if (orderItem == null) return;
+            orderItem.RemoveAll(order => order == null);
+            Order order = Search(id);
+            if (order != null) order.Update(orderItem); 
 
         }
         
-        public void Delete(Order order)
-        {
-            _orders.Remove(order); // TODO
-        }
-
         public Order Search(string id)
         {
             return _orders.Find(order => order.Id == id); // TODO Check for null and make case insensitive
@@ -52,18 +56,13 @@ namespace BigMammaPizzaria
         
         public void PrintOrders()
         {
-            Console.WriteLine("---------ORDERS--------");
-            Console.WriteLine(ToString());
-            Console.WriteLine("-----------------------");
+            Helpers.PrintPaper("Orders", ToString());
         }
         
         public override string ToString()
         {
             string orders = "";
-            foreach (var item in _orders)
-            {
-                orders += item + "\n";
-            }
+            foreach (var item in _orders) orders += item + "\n";
             return orders;
         }
 

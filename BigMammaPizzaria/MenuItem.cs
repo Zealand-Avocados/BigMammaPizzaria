@@ -1,4 +1,6 @@
     
+using System;
+
 namespace BigMammaPizzaria
 {
     public class MenuItem
@@ -8,6 +10,7 @@ namespace BigMammaPizzaria
 
         protected MenuItem(string name, float price)
         {
+            if (price <= 0) throw new ArgumentOutOfRangeException("price", "Price cannot be negative");
             _name = name;
             _price = price;
         }
@@ -17,6 +20,7 @@ namespace BigMammaPizzaria
 
         public void Update(string name, float price)
         {
+            if (price <= 0) throw new ArgumentOutOfRangeException("price", "Price cannot be negative");
             _name = name;
             _price = price;
         }

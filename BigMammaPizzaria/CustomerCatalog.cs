@@ -16,7 +16,12 @@ namespace BigMammaPizzaria
         
         public CustomerCatalog(List<Customer> customers)
         {
-            _customers = customers;
+            if (customers == null) _customers = new List<Customer>();
+            else 
+            {
+                customers.RemoveAll(customer => customer == null);
+                _customers = customers;
+            }
         }
 
 
@@ -25,7 +30,8 @@ namespace BigMammaPizzaria
 
         public void Add(Customer customer)
         {
-            _customers.Add(customer); // TODO check for null
+            if (customer == null) return;
+            _customers.Add(customer); 
         }
 
 
@@ -37,35 +43,26 @@ namespace BigMammaPizzaria
         public void Update(string firstName, string lastName, string newFirstName, string newLastName)
         {
 
-            Search(firstName, lastName).Update(newFirstName, newLastName); // TODO check for null as well here
+            Search(firstName, lastName).Update(newFirstName, newLastName); // We checked there is no way to have null customer in the list, so we don't have to check for null
 
         }
         
-        public void Delete(Customer customer)
-        {
-            _customers.Remove(customer); // TODO
-        }
 
         public Customer Search(string fistName, string lastName)
         {
-            return _customers.Find(customer => customer.FirstName == fistName && customer.LastName == lastName); // TODO Check for null and make case insensitive
+            return _customers.Find(customer => customer.FirstName == fistName && customer.LastName == lastName);
         }
         
         
         public void PrintCustomers()
         {
-            Console.WriteLine("-------CUSTOMERS-------");
-            Console.WriteLine(ToString());
-            Console.WriteLine("-----------------------");
+            Helpers.PrintPaper("customers", ToString());
         }
         
         public override string ToString()
         {
             string customers = "";
-            foreach (var item in _customers)
-            {
-                customers += item + "\n";
-            }
+            foreach (var item in _customers) customers += item + "\n";
             return customers;
         }
 

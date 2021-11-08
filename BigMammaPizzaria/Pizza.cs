@@ -1,4 +1,4 @@
-    using System;
+using System;
 using System.Collections.Generic;
 
 namespace BigMammaPizzaria
@@ -33,6 +33,8 @@ namespace BigMammaPizzaria
         public Pizza(string name, float price, List<Ingredient> ingredients, List<Topping> toppings) : base(name,
             price)
         {
+            if (ingredients == null || ingredients.Count == 0)
+                throw new ArgumentException("Wrong arguments specification in Pizza");
             _ingredients = ingredients;
             _toppings = toppings;
         }
@@ -56,7 +58,7 @@ namespace BigMammaPizzaria
             _extraToppings = 0;
         }
 
-        public Pizza Clone() => (Pizza)MemberwiseClone();
+        public Pizza Clone() => (Pizza) MemberwiseClone();
 
         public override string ToString()
         {

@@ -15,28 +15,12 @@ namespace BigMammaPizzaria
             _zip = zip;
         }
 
-        public string Country
-        {
-            get
-            {
-                return _country;
-            }
-            set => _country = value;
-        }
-        
-        public string City
-        {
-            get { return _city; }
-        }
-        
-        public string Street
-        {
-            get { return _street; }
-        }
-        
-        public int Zip
-        {
-            get { return _zip; }
-        }
+        public string Country => _country;
+
+        public string City => _city;
+
+        public string Street => _street;
+
+        public int Zip => _zip;
     }
 }
