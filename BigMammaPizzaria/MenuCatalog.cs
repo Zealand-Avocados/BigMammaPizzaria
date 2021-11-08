@@ -40,7 +40,14 @@ namespace BigMammaPizzaria
 
         public void UpdateMenuItem(string name, string newName, float price)
         {
-            Search(name).Update(newName, price); //TODO
+            try
+            {
+                Search(name).Update(newName, price);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void PrintMenu()
@@ -50,7 +57,7 @@ namespace BigMammaPizzaria
 
         public MenuItem Search(string name)
         {
-            return _menu.Find(item => item.Name == name); 
+            return _menu.Find(item => item.Name == name);
         }
 
         public override string ToString()

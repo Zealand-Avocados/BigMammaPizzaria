@@ -31,7 +31,7 @@ namespace BigMammaPizzaria
         public void Add(Order order)
         {
             if (order == null) return;
-            _orders.Add(order); // TODO check for null
+            _orders.Add(order); 
         }
 
 
