@@ -22,5 +22,10 @@ namespace BigMammaPizzaria
         public string Street => _street;
 
         public int Zip => _zip;
+
+        public override string ToString()
+        {
+            return $"{_city} {_street} {_zip} {_country}";
+        }
     }
 }

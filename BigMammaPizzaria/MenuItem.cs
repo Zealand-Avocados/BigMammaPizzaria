@@ -10,7 +10,9 @@ namespace BigMammaPizzaria
 
         protected MenuItem(string name, float price)
         {
-            if (price <= 0) throw new ArgumentOutOfRangeException("price", "Price cannot be negative");
+            if (price <= 0) 
+                throw new ArgumentOutOfRangeException("price", "Price cannot be negative");
+
             _name = name;
             _price = price;
         }
@@ -20,7 +22,9 @@ namespace BigMammaPizzaria
 
         public void Update(string name, float price)
         {
-            if (price <= 0) throw new ArgumentOutOfRangeException("price", "Price cannot be negative");
+            if (price <= 0) 
+                throw new ArgumentOutOfRangeException("price", "Price cannot be negative");
+            
             _name = name;
             _price = price;
         }
@@ -29,6 +33,5 @@ namespace BigMammaPizzaria
         {
             return $"The menu item {_name} has price of {_price}.";
         }
-        
     }
 }

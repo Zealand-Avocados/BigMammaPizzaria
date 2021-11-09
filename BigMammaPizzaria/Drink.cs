@@ -8,10 +8,11 @@ namespace BigMammaPizzaria
 
         public Drink(string name, float price, int volumeInMl) : base(name, price)
         {
-            if (volumeInMl <= 0) throw new ArgumentOutOfRangeException("volumeInMl", "Volume can't be lower than zero");
+            if (volumeInMl <= 0) 
+                throw new ArgumentOutOfRangeException("volumeInMl", "Volume can't be lower than zero");
+            
             _volumeInMl = volumeInMl;
         }
-
         public int VolumeInMl => _volumeInMl;
 
         public Drink Clone() => (Drink)MemberwiseClone();
@@ -20,7 +21,5 @@ namespace BigMammaPizzaria
         {
             return $"The {Name} has volume is {_volumeInMl} ml";
         }
-
-       
     }
 }

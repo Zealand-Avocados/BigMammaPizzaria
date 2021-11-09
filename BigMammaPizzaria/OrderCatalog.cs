@@ -7,7 +7,6 @@ namespace BigMammaPizzaria
     {
         private List<Order> _orders;
 
-
         public OrderCatalog()
         {
             _orders = new List<Order>();
@@ -15,7 +14,8 @@ namespace BigMammaPizzaria
         
         public OrderCatalog(List<Order> order)
         {
-            if (order == null) _orders = new List<Order>();
+            if (order == null) 
+                _orders = new List<Order>();
             else 
             {
                 order.RemoveAll(order => order == null);
@@ -24,16 +24,15 @@ namespace BigMammaPizzaria
            
         }
 
-
         public List<Order> Orders => _orders;
-
 
         public void Add(Order order)
         {
-            if (order == null) return;
+            if (order == null) 
+                return;
+
             _orders.Add(order); 
         }
-
 
         public void Remove(Order order)
         {
@@ -42,16 +41,34 @@ namespace BigMammaPizzaria
 
         public void Update(string id, List<OrderItem> orderItem)
         {
-            if (orderItem == null) return;
-            orderItem.RemoveAll(order => order == null);
-            Order order = Search(id);
-            if (order != null) order.Update(orderItem); 
+            if (orderItem == null) 
+                return;
 
+            orderItem.RemoveAll(order => order == null);
+
+            Order order = null;
+
+            try
+            {
+                order = Search(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+             
+            if (order != null)
+                order.Update(orderItem); 
         }
         
         public Order Search(string id)
         {
-            return _orders.Find(order => order.Id == id); // TODO Check for null and make case insensitive
+            Order order = _orders.Find(order => order.Id == id);
+
+            if (order == null)
+                throw new ArgumentNullException("order does not exist");
+
+            return order;
         }
         
         public void PrintOrders()
@@ -62,10 +79,15 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             string orders = "";
-            foreach (var item in _orders) orders += item + "\n";
+            int i = 0;
+
+            foreach (var item in _orders)
+            {
+                orders += item + (i != _orders.Count - 1 ? "\n" : "");
+                i++;
+            }
+
             return orders;
         }
-
-
     }
 }

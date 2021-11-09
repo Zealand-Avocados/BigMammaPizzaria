@@ -11,7 +11,6 @@ namespace BigMammaPizzaria
             _lastName = lastName;
             _address = address;
         }
-
         public string FirstName => _firstName;
 
         public string LastName => _lastName;

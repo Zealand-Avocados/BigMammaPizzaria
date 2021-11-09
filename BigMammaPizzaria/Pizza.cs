@@ -30,15 +30,15 @@ namespace BigMammaPizzaria
             _toppings = new List<Topping>();
         }
 
-        public Pizza(string name, float price, List<Ingredient> ingredients, List<Topping> toppings) : base(name,
-            price)
+        public Pizza(string name, float price, List<Ingredient> ingredients, List<Topping> toppings)
+            : base(name, price)
         {
             if (ingredients == null || ingredients.Count == 0)
                 throw new ArgumentException("Wrong arguments specification in Pizza");
+            
             _ingredients = ingredients;
             _toppings = toppings;
         }
-
 
         public void AddTopping(Topping topping)
         {
@@ -52,7 +52,9 @@ namespace BigMammaPizzaria
 
         public void RemoveToppings()
         {
-            if (_extraToppings == 0) return;
+            if (_extraToppings == 0) 
+                return;
+
             _price -= Constants.ExtraToppingPrice * _extraToppings;
             _toppings.RemoveRange(_toppings.Count - _extraToppings, _extraToppings);
             _extraToppings = 0;
@@ -63,6 +65,7 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             return
+                $"{_name} costs {_price}kr - " +
                 $"{string.Join(", ", _ingredients)}" +
                 (_toppings.Count == 0 ? "" : "; toppings: " + string.Join(", ", _toppings));
         }

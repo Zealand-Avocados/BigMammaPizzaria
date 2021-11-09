@@ -5,9 +5,7 @@ namespace BigMammaPizzaria
 {
     public class CustomerCatalog
     {
-
         private List<Customer> _customers;
-
 
         public CustomerCatalog()
         {
@@ -16,7 +14,8 @@ namespace BigMammaPizzaria
         
         public CustomerCatalog(List<Customer> customers)
         {
-            if (customers == null) _customers = new List<Customer>();
+            if (customers == null) 
+                _customers = new List<Customer>();
             else 
             {
                 customers.RemoveAll(customer => customer == null);
@@ -24,33 +23,48 @@ namespace BigMammaPizzaria
             }
         }
 
-
         public List<Customer> Customers => _customers;
-
 
         public void Add(Customer customer)
         {
-            if (customer == null) return;
+            if (customer == null) 
+                return;
+
             _customers.Add(customer); 
         }
 
-
-        public void Remove(Customer customer)
+        public void Remove(string fistName, string lastName)
         {
-            _customers.Remove(customer);
+            try
+            {
+                _customers.Remove(Search(fistName, lastName));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void Update(string firstName, string lastName, string newFirstName, string newLastName)
         {
-
-            Search(firstName, lastName).Update(newFirstName, newLastName); // We checked there is no way to have null customer in the list, so we don't have to check for null
-
+            try
+            {
+                Search(firstName, lastName).Update(newFirstName, newLastName);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         
-
         public Customer Search(string fistName, string lastName)
         {
-            return _customers.Find(customer => customer.FirstName == fistName && customer.LastName == lastName);
+            Customer customer = _customers.Find(customer => customer.FirstName == fistName && customer.LastName == lastName);
+
+            if (customer == null)
+                throw new ArgumentNullException("customer doesnt exist");
+
+            return customer;
         }
         
         
@@ -62,14 +76,15 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             string customers = "";
-            foreach (var item in _customers) customers += item + "\n";
+            int i = 0;
+
+            foreach (var item in _customers)
+            {
+                customers += item + (i != _customers.Count - 1 ? "\n" : "");
+                i++;
+            }
+
             return customers;
         }
-
-
-
-
-
-
     }
 }
