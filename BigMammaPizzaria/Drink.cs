@@ -1,3 +1,5 @@
+using System;
+
 namespace BigMammaPizzaria
 {
     public class Drink : MenuItem
@@ -6,18 +8,18 @@ namespace BigMammaPizzaria
 
         public Drink(string name, float price, int volumeInMl) : base(name, price)
         {
+            if (volumeInMl <= 0) 
+                throw new ArgumentOutOfRangeException("volumeInMl", "Volume can't be lower than zero");
+            
             _volumeInMl = volumeInMl;
         }
-
         public int VolumeInMl => _volumeInMl;
 
         public Drink Clone() => (Drink)MemberwiseClone();
         
         public override string ToString()
         {
-            return $"the volume is {_volumeInMl} ml";
+            return $"The {Name} has volume is {_volumeInMl} ml";
         }
-
-       
     }
 }

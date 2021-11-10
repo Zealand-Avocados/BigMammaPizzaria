@@ -8,42 +8,80 @@ namespace BigMammaPizzaria
     public class MenuCatalog
     {
         private List<MenuItem> _menu = new List<MenuItem>();
-        
+
+
+        public MenuCatalog(List<MenuItem> items = null)
+        {
+            if (items == null) 
+                _menu = new List<MenuItem>();
+            else
+            {
+                items.RemoveAll(customer => customer == null);
+                _menu = items;
+            }
+        }
+
+        public List<MenuItem> Menu => _menu;
 
         public void AddMenuItem(MenuItem menuItem)
         {
+            if (menuItem == null) 
+                return;
+
             _menu.Add(menuItem);
         }
 
-        public void DeleteMenuItem(MenuItem menuItem)
+        public void DeleteMenuItem(string menuItem)
         {
-            _menu.Remove(menuItem); // TODO
+            try
+            {
+                _menu.Remove(Search(menuItem));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void UpdateMenuItem(string name, string newName, float price)
         {
-            SearchItem(name).Update(newName, price); // TODO
+            try
+            {
+                Search(name).Update(newName, price);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void PrintMenu()
         {
-            Console.WriteLine("-------MENU-------");
-            Console.WriteLine(ToString());
-            Console.WriteLine("------------------");
+            Helpers.PrintPaper("Menu", ToString());
         }
 
-        public MenuItem SearchItem(string name)
+        public MenuItem Search(string name)
         {
-            return _menu.Find(item => item.Name == name); // TODO checks for empty list or null exceptions
+            MenuItem item = _menu.FirstOrDefault(obj => obj.Name == name);
+
+            if (item == null)
+                throw new ArgumentNullException("Menu Item doesnt exist");
+
+            return item;
         }
 
         public override string ToString()
         {
             string menu = "";
-            foreach (var item in _menu)
+
+            for (int i = 0; i < _menu.Count; ++i)
             {
-                menu += item + "\n";
+                menu += _menu[i].ToString();
+
+                if (i < _menu.Count - 1)
+                    menu += "\n";
             }
+
             return menu;
         }
     }

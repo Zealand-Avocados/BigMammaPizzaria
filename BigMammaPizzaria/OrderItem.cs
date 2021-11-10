@@ -11,14 +11,19 @@ namespace BigMammaPizzaria
 
         public OrderItem(int quantity, MenuItem menuItem)
         {
+            if (quantity <= 0 || menuItem == null) 
+                throw new ArgumentException("Wrong arguments values for order item"); 
+
             _quantity = quantity;
             _menuItem = menuItem;
         }
         
         public int Quantity => _quantity;
+
         public MenuItem MenuItem => _menuItem;
 
         public float TotalItemPrice() => _quantity * _menuItem.Price;
+
         public override string ToString()
         {
             return $"{_quantity}x {_menuItem.Name} for total price of {TotalItemPrice()} dkk\n\t\t({_menuItem})";
