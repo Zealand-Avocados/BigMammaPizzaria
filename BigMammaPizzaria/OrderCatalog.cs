@@ -5,14 +5,9 @@ namespace BigMammaPizzaria
 {
     public class OrderCatalog
     {
-        private List<Order> _orders;
-
-        public OrderCatalog()
-        {
-            _orders = new List<Order>();
-        }
+        private List<Order> _orders = new List<Order>();
         
-        public OrderCatalog(List<Order> order)
+        public OrderCatalog(List<Order> order = null)
         {
             if (order == null) 
                 _orders = new List<Order>();
@@ -21,7 +16,6 @@ namespace BigMammaPizzaria
                 order.RemoveAll(order => order == null);
                 _orders = order;
             }
-           
         }
 
         public List<Order> Orders => _orders;
@@ -79,12 +73,13 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             string orders = "";
-            int i = 0;
 
-            foreach (var item in _orders)
+            for (int i = 0; i < _orders.Count; ++i)
             {
-                orders += item + (i != _orders.Count - 1 ? "\n" : "");
-                i++;
+                orders += _orders[i].ToString();
+
+                if (i < _orders.Count - 1)
+                    orders += "\n";
             }
 
             return orders;

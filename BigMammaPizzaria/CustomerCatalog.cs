@@ -76,12 +76,13 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             string customers = "";
-            int i = 0;
 
-            foreach (var item in _customers)
+            for (int i = 0; i < _customers.Count; ++i)
             {
-                customers += item + (i != _customers.Count - 1 ? "\n" : "");
-                i++;
+                customers += _customers[i].ToString();
+
+                if (i < _customers.Count - 1)
+                    customers += "\n";
             }
 
             return customers;

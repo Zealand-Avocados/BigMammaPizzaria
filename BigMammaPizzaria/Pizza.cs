@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BigMammaPizzaria
 {
@@ -21,13 +22,12 @@ namespace BigMammaPizzaria
     public class Pizza : MenuItem
     {
         private List<Ingredient> _ingredients;
-        private List<Topping> _toppings;
+        private List<Topping> _toppings = new List<Topping>();
         private int _extraToppings = 0;
 
         public Pizza(string name, float price, List<Ingredient> ingredients) : base(name, price)
         {
             _ingredients = ingredients;
-            _toppings = new List<Topping>();
         }
 
         public Pizza(string name, float price, List<Ingredient> ingredients, List<Topping> toppings)
@@ -35,7 +35,7 @@ namespace BigMammaPizzaria
         {
             if (ingredients == null || ingredients.Count == 0)
                 throw new ArgumentException("Wrong arguments specification in Pizza");
-            
+
             _ingredients = ingredients;
             _toppings = toppings;
         }
@@ -52,7 +52,7 @@ namespace BigMammaPizzaria
 
         public void RemoveToppings()
         {
-            if (_extraToppings == 0) 
+            if (_extraToppings == 0)
                 return;
 
             _price -= Constants.ExtraToppingPrice * _extraToppings;
@@ -60,7 +60,13 @@ namespace BigMammaPizzaria
             _extraToppings = 0;
         }
 
-        public Pizza Clone() => (Pizza) MemberwiseClone();
+        public Pizza Clone()
+        {
+            Pizza pizza = (Pizza)MemberwiseClone();
+            pizza._toppings = _toppings.ToList();
+            pizza._ingredients = _ingredients.ToList();
+            return pizza;
+        }
 
         public override string ToString()
         {

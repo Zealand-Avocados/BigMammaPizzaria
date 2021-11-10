@@ -68,24 +68,24 @@ namespace BigMammaPizzaria
             #region OrderCatalog
 
             _orderCatalog = new OrderCatalog(new List<Order>
-            {
-                new Order(
-                   _customerCatalog.Search("Adam", "Cipkala"), 
-                   new List<OrderItem>()
-                   {
-                        new OrderItem(2, _menuCatalog.Search("Margarita")),
-                        new OrderItem(1, _menuCatalog.Search("Water"))
-                   }
-                ),
-                new Order(
-                    _customerCatalog.Search("David", "Zidan"),
-                    new List<OrderItem>()
-                    {
-                        new OrderItem(1, _menuCatalog.Search("Proscutio")),
-                        new OrderItem(2, _menuCatalog.Search("Coffee Latte"))
-                    }
-                )
-            });
+                {
+                    new Order(
+                       _customerCatalog.Search("Adam", "Cipkala"), 
+                       new List<OrderItem>()
+                       {
+                            new OrderItem(2, GetPizza("Margarita")),
+                            new OrderItem(1, GetDrink("Water"))
+                       }
+                    ),
+                    new Order(
+                        _customerCatalog.Search("David", "Zidan"),
+                        new List<OrderItem>()
+                        {
+                            new OrderItem(1, GetPizza("Proscutio")),
+                            new OrderItem(2, GetDrink("Coffee Latte"))
+                        }
+                    )
+                });
 
             _orderCatalog.PrintOrders();
 
@@ -94,17 +94,20 @@ namespace BigMammaPizzaria
                    _customerCatalog.Search("David", "Zidan"),
                    new List<OrderItem>()
                    {
-                        new OrderItem(5, _menuCatalog.Search("Proscutio")),
-                        new OrderItem(6, _menuCatalog.Search("Coffee Latte"))
-                    }
+                        new OrderItem(5, GetPizza("Margarita")),
+                        new OrderItem(6, GetDrink("Water"))
+                   }
                 )
              );
+
+            Pizza pizza1 = GetPizza("Proscutio");
+            pizza1.AddTopping(Topping.Majonase);
 
             _orderCatalog.Update(_orderCatalog.Orders[0].Id,
                 new List<OrderItem>()
                     {
-                        new OrderItem(10, _menuCatalog.Search("Proscutio")),
-                        new OrderItem(22, _menuCatalog.Search("Coffee Latte"))
+                        new OrderItem(5, pizza1),
+                        new OrderItem(6, GetDrink("Coffee Latte"))
                     }
              ); //TODO Id is too long
 
@@ -112,24 +115,24 @@ namespace BigMammaPizzaria
             #endregion
         }
 
-        // TODO
         private Pizza GetPizza(string sName)
         {
-            MenuItem m = _menuCatalog.Search(sName);
-            if (m == null)
+            MenuItem item = _menuCatalog.Search(sName);
+
+            if (item == null)
                 return null;
 
-            return ((Pizza) m).Clone();
+            return ((Pizza)item).Clone();
         }
 
-        // TODO
         private Drink GetDrink(string sName)
         {
             MenuItem m = _menuCatalog.Search(sName);
+
             if (m == null)
                 return null;
 
-            return ((Drink) m).Clone();
+            return ((Drink)m).Clone();
         }
     }
 }

@@ -7,14 +7,10 @@ namespace BigMammaPizzaria
 {
     public class MenuCatalog
     {
-        private List<MenuItem> _menu;
+        private List<MenuItem> _menu = new List<MenuItem>();
 
-        public MenuCatalog()
-        {
-            _menu = new List<MenuItem>();
-        }
 
-        public MenuCatalog(List<MenuItem> items)
+        public MenuCatalog(List<MenuItem> items = null)
         {
             if (items == null) 
                 _menu = new List<MenuItem>();
@@ -66,7 +62,7 @@ namespace BigMammaPizzaria
 
         public MenuItem Search(string name)
         {
-            MenuItem item = _menu.Find(item => item.Name == name);
+            MenuItem item = _menu.FirstOrDefault(obj => obj.Name == name);
 
             if (item == null)
                 throw new ArgumentNullException("Menu Item doesnt exist");
@@ -77,14 +73,15 @@ namespace BigMammaPizzaria
         public override string ToString()
         {
             string menu = "";
-            int i = 0;
 
-            foreach (var item in _menu)
+            for (int i = 0; i < _menu.Count; ++i)
             {
-                menu += item + ( i != _menu.Count - 1 ? "\n" : "" );
-                i++;
+                menu += _menu[i].ToString();
+
+                if (i < _menu.Count - 1)
+                    menu += "\n";
             }
-               
+
             return menu;
         }
     }
